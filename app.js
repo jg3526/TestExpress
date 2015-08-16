@@ -1,6 +1,19 @@
-var express = require('/usr/local/lib/node_modules/express');
+var express = require('express');
 var app = express();
 
+app.get('/', function(req, res){
+	res.render('index.ejs',{title: 'Hello World!'});
+});
+app.get('/about', function(req, res){
+	res.render('layout.ejs',{title: 'About Us', body:'<h1>About Us</h1>'});
+});
+app.get('/*', function(req, res){
+	res.status(404).render('error.ejs',{title:'Error!'});
+});
+console.log('Server started ...');
+app.listen(3000);
+
+/*
 // apply this first
 app.get('/about', function(request, response){
 	response.send('<h1>About Us</h1>');
@@ -15,3 +28,4 @@ app.get('/*', function(request, response){
 });
 console.log('Server Started on localhost:3000 ...');
 app.listen(3000);
+*/
